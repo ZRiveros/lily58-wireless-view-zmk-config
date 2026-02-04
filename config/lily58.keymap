@@ -9,18 +9,18 @@
 #include <dt-bindings/zmk/keys.h>
 #include "keys_sv.h"
 
- / {
+/ {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESC           &kp SV_N1  &kp SV_N2  &kp SV_N3  &kp SV_N4  &kp SV_N5                                     &kp SV_N6  &kp SV_N7      &kp SV_N8     &kp SV_N9   &kp SV_N0        &kp BACKSPACE
-&kp TAB           &kp Q      &kp W      &kp E      &kp R      &kp T                                         &kp Y      &kp U          &kp I         &kp O       &kp P            &kp SV_A_RING
-&kp LEFT_SHIFT    &kp A      &kp S      &kp D      &kp F      &kp G                                         &kp H      &kp J          &kp K         &kp L       &kp SV_O_UMLAUT  &kp SV_A_UMLAUT
-&kp LEFT_CONTROL  &kp Z      &kp X      &kp C      &kp V      &kp B      &lbkt_lbrc          &rbkt_rbrc     &kp N      &kp M          &comma_lt     &dot_gt     &kp SV_QUESTION  &kp SV_MINUS
-                                        &kp LALT   &kp LGUI   &mo 1      &kp SPACE           &kp ENTER      &mo 2      &kp RIGHT_ALT  &plus_equal
+&kp ESC           &kp SV_N1  &kp SV_N2  &kp SV_N3  &kp SV_N4   &kp SV_N5                            &kp SV_N6      &kp SV_N7      &kp SV_N8    &kp SV_N9  &kp SV_N0        &kp BACKSPACE
+&kp TAB           &kp Q      &kp W      &kp E      &kp R       &kp T                                &kp Y          &kp U          &kp I        &kp O      &kp P            &kp SV_A_RING
+&kp LEFT_SHIFT    &kp A      &kp S      &kp D      &kp F       &kp G                                &kp H          &kp J          &kp K        &kp L      &kp SV_O_UMLAUT  &kp SV_A_UMLAUT
+&kp LEFT_CONTROL  &kp Z      &kp X      &kp C      &kp V       &kp B      &lbkt_lbrc    &rbkt_rbrc  &kp N          &kp M          &comma_lt    &dot_gt    &kp SV_QUESTION  &kp SV_MINUS
+                                        &kp LALT   &lt 2 LCMD  &mo 1      &kp SPACE     &kp ENTER   &kp RIGHT_ALT  &kp RIGHT_ALT  &plus_equal
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -53,49 +53,64 @@
         };
 
         extra_1 { status = "reserved"; };
+
         extra_2 { status = "reserved"; };
+
         extra_3 { status = "reserved"; };
     };
 
     // ---------- Behaviors ----------
+
     behaviors {
         // Brackets
+
         lbkt_lbrc: bracket_brace_left {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_LBKT>, <&kp SV_LBRC>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
         rbkt_rbrc: bracket_brace_right {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_RBKT>, <&kp SV_RBRC>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
         // Comma / Dot / Semicolon / Plus
+
         comma_lt: comma_less {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_COMMA>, <&kp SV_LT>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
         dot_gt: dot_greater {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_DOT>, <&kp SV_GT>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
         semi_colon: semi_colon {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_SEMI>, <&kp SV_COLON>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
         plus_equal: plus_equal {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp SV_PLUS>, <&kp SV_EQUAL>;
+
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
