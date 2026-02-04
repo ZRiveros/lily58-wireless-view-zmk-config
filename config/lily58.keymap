@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include "keys_sv.h"
 
-/ {
+ / {
     keymap {
         compatible = "zmk,keymap";
 
@@ -17,7 +17,7 @@
             // ------------------------------------------------------------------------------------------------------------
             // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   `   |
             // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
-            // |  CTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
+            // | CTRL  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
             // | SHIFT |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
             //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
 
@@ -26,21 +26,14 @@
 &kp ESC           &kp SV_N1  &kp SV_N2  &kp SV_N3  &kp SV_N4  &kp SV_N5                                     &kp SV_N6  &kp SV_N7      &kp SV_N8     &kp SV_N9   &kp SV_N0        &kp BACKSPACE
 &kp TAB           &kp Q      &kp W      &kp E      &kp R      &kp T                                         &kp Y      &kp U          &kp I         &kp O       &kp P            &kp SV_A_RING
 &kp LEFT_SHIFT    &kp A      &kp S      &kp D      &kp F      &kp G                                         &kp H      &kp J          &kp K         &kp L       &kp SV_O_UMLAUT  &kp SV_A_UMLAUT
-&kp LEFT_CONTROL  &kp Z      &kp X      &kp C      &kp V      &kp B      &kp SV_LESS_THAN    &kp ENTER      &kp N      &kp M          &kp SV_COMMA  &kp SV_DOT  &kp SV_QUESTION  &kp SV_MINUS
-                                        &kp LALT   &kp LGUI   &mo 1      &kp SPACE           &kp RIGHT_ALT  &mo 2      &kp RIGHT_ALT  &kp SV_PLUS
+&kp LEFT_CONTROL  &kp Z      &kp X      &kp C      &kp V      &kp B      &lbkt_lbrc         &kp &rbkt_rbrc  &kp N      &kp M          &kp SV_COMMA  &kp SV_DOT  &kp SV_QUESTION  &kp SV_MINUS
+                                        &kp LALT   &kp LGUI   &mo 1      &kp SPACE           &kp ENTER  &mo 2      &kp RIGHT_ALT  &kp SV_PLUS
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         lower_layer {
-            // ------------------------------------------------------------------------------------------------------------
-            // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-            // |  F1   |  F2 |  F3 |  F4  |  F5  |  F6  |                   |  F7  |  F8   |  F9   |  F10 |  F11  |  F12  |
-            // |   `   |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   |   ~   |
-            // |       |     |     |      |      |      |        |  |       |      |  _    |  +    |  {   |   }   |  "|"  |
-            //                     |      |      |      |        |  |       |      |       |       |
-
             display-name = "Lower";
             bindings = <
 &bt BT_CLR        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &kp EQUAL  &kp PLUS         &kp QMARK    &none            &kp PIPE  &kp TILDE
@@ -54,13 +47,6 @@
         };
 
         raise_layer {
-            // ------------------------------------------------------------------------------------------------------------
-            // |       |     |     |      |      |      |                   |      |       |       |      |       |       |
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |   7   |   8   |  9   |   0   |       |
-            // |   F1  |  F2 |  F3 |  F4  |  F5  |  F6  |                   |      |   <-  |   v   |  ^   |  ->   |       |
-            // |   F7  |  F8 |  F9 |  F10 |  F11 |  F12 |        |  |       |  +   |   -   |   =   |  [   |   ]   |   \   |
-            //                     |      |      |      |        |  |       |      |       |       |
-
             display-name = "Raise";
             bindings = <
 &kp F7            &kp F8  &kp F9  &kp F10  &kp F11  &kp F12                    &trans  &trans          &trans          &trans           &trans  &trans
@@ -74,9 +60,23 @@
         };
 
         extra_1 { status = "reserved"; };
-
         extra_2 { status = "reserved"; };
-
         extra_3 { status = "reserved"; };
+    };
+
+    // ---------- Behaviors ----------
+    behaviors {
+        lbkt_lbrc: bracket_brace_left {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SV_LESS_THAN>, <&kp SV_LBRC>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        rbkt_rbrc: bracket_brace_right {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp SV_GREATER_THAN>, <&kp SV_RBRC>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 };
