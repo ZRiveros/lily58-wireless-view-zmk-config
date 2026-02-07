@@ -228,7 +228,7 @@
             display-name = "Lower";
             bindings = <
 &bt BT_CLR        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &bslash_tilde  &mu_mu  &pound_pound  &euro_euro  &slash_qmark  &kp PLUS
-&kp F1            &kp F2        &kp F3        &kp F4        &kp F5        &kp F6                          &kp F7         &kp F8  &kp F9        &kp F10     &kp F11       &kp F12
+&trans            &trans        &trans        &trans        &trans        &trans                          &trans         &trans  &trans        &trans      &trans        &trans
 &kp LEFT_SHIFT    &trans        &trans        &trans        &trans        &trans                          &trans         &trans  &trans        &trans      &trans        &trans
 &kp LEFT_CONTROL  &trans        &trans        &trans        &trans        &trans        &trans    &trans  &trans         &trans  &trans        &trans      &trans        &trans
                                               &trans        &trans        &trans        &trans    &trans  &trans         &trans  &trans
@@ -240,11 +240,11 @@
         raise_layer {
             display-name = "Raise";
             bindings = <
-&kp F7            &kp F8  &kp F9  &kp F10  &kp F11  &kp F12                    &trans  &trans  &trans  &trans          &trans          &kp DEL
-&kp F1            &kp F2  &kp F3  &kp F4   &kp F5   &kp F6                     &trans  &trans  &trans  &trans          &trans          &kp C_AL_SCREEN_SAVER
-&kp LEFT_SHIFT    &trans  &trans  &trans   &trans   &trans                     &trans  &trans  &trans  &trans          &kp UP_ARROW    &kp PRINTSCREEN
-&kp LEFT_CONTROL  &trans  &trans  &trans   &trans   &trans   &trans    &trans  &trans  &trans  &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW
-                                  &trans   &trans   &trans   &trans    &trans  &trans  &trans  &trans
+&trans            &trans          &trans          &trans           &trans  &trans                    &kp F10  &kp F11  &kp F12  &trans          &trans          &kp DEL
+&trans            &trans          &kp UP_ARROW    &trans           &trans  &trans                    &kp F7   &kp F8   &kp F9   &trans          &trans          &kp C_AL_SCREEN_SAVER
+&kp LEFT_SHIFT    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans  &trans                    &kp F4   &kp F5   &kp F6   &trans          &kp UP_ARROW    &kp PRINTSCREEN
+&kp LEFT_CONTROL  &trans          &trans          &trans           &trans  &trans  &trans    &trans  &kp F1   &kp F2   &kp F3   &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW
+                                                  &kp LEFT_ALT     &trans  &trans  &trans    &trans  &trans   &trans   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
